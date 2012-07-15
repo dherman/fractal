@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<title>Dave's Fractal</title>
+<style>
+html, body {
+    margin: 0;
+}
+#scene {
+    border: none;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
+#counter {
+    float: right;
+    z-index: 1;
+    font-family: Helvetica, Arial, swiss;
+    padding: 0.5em;
+    background: #69c;
+    margin: 2em;
+    color: white;
+    font-weight: bold;
+    border: solid 1px black;
+}
+</style>
+</head>
+<body onload="drawScene(scene, counter)">
+<canvas id="scene" width=1024 height=768></canvas>
+<div id="counter">0</div>
+
+<script src="fractal.js"></script>
+<script>
+(function() {
+    var scene = document.getElementById('scene');
+    var counter = document.getElementById('counter');
+    var cx = scene.getContext('2d');
+    window.onresize = function() {
+        drawScene(scene, counter);
+    };
+    document.onkeyup = function(event) {
+        switch (event.keyCode) {
+          case 37:
+            currentIteration--;
+            drawScene(scene, counter);
+            break;
+          case 39:
+            currentIteration++;
+            drawScene(scene, counter);
+            break;
+        }
+    }
+})();
+</script>
+</body>
+</html>
